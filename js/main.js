@@ -7,14 +7,14 @@ var cObj;
 var fObj;
 
 function loadWeather() {
-    var zip = document.getElementById('zip').value;
+    var place = document.getElementById('zip').value;
     
-    if(zip === ''){
-        zip="84653"
+    if(place === ''){
+        place = "gdansk"
     }
     
-    var conditionPath = "http://api.wunderground.com/api/9575659d2a2567a0/conditions/q/"+zip+".json";
-    var forecastPath = "http://api.wunderground.com/api/9575659d2a2567a0/forecast/q/"+zip+".json";
+    var conditionPath = "http://api.wunderground.com/api/9575659d2a2567a0/conditions/q/"+place+".json";
+    var forecastPath = "http://api.wunderground.com/api/9575659d2a2567a0/forecast/q/"+place+".json";
     
     // GET THE CONDITIONS
     weatherConditions.open('GET', conditionPath, true);
@@ -70,4 +70,4 @@ if (weatherForecast.status === 200){
 } //end if
 }; //end function
 
-
+loadWeather();
