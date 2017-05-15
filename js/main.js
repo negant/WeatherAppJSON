@@ -6,10 +6,28 @@ var weatherForecast = new XMLHttpRequest();
 var cObj;
 var fObj;
 
-// GET THE CONDITIONS
-weatherConditions.open('GET', 'http://api.wunderground.com/api/9575659d2a2567a0/conditions/q/84653.json', true);
-weatherConditions.responseType = 'text';
-weatherConditions.send(null);
+function loadWeather() {
+    var zip = document.getElementById('zip').value;
+    
+    if(zip === ''){
+        zip="84653"
+    }
+    
+    var conditionPath = "http://api.wunderground.com/api/9575659d2a2567a0/conditions/q/"+zip+".json";
+    var forecastPath = "http://api.wunderground.com/api/9575659d2a2567a0/forecast/q/"+zip+".json";
+    
+    // GET THE CONDITIONS
+    weatherConditions.open('GET', conditionPath, true);
+    weatherConditions.responseType = 'text';
+    weatherConditions.send(null);
+    
+    // GET THE FORECARST
+    weatherForecast.open('GET', forecastPath, true);
+    weatherForecast.responseType = 'text'; 
+    weatherForecast.send();
+}
+
+
 
 weatherConditions.onload = function() {
     if (weatherConditions.status === 200){
@@ -24,10 +42,7 @@ weatherConditions.onload = function() {
 
 
 
-// GET THE FORECARST
-weatherForecast.open('GET', 'http://api.wunderground.com/api/9575659d2a2567a0/forecast/q/84653.json', true);
-weatherForecast.responseType = 'text'; 
-weatherForecast.send();
+
 
 weatherForecast.onload = function() {
 if (weatherForecast.status === 200){
