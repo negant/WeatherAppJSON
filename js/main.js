@@ -10,7 +10,7 @@ function loadWeather() {
     var place = document.getElementById('zip').value;
     
     if(place === ''){
-        place = "gdansk"
+        place = "gdańsk"
     }
     
     var conditionPath = "http://api.wunderground.com/api/9575659d2a2567a0/conditions/q/"+place+".json";
@@ -35,12 +35,10 @@ weatherConditions.onload = function() {
         console.log(cObj);
         document.getElementById('location').innerHTML = cObj.current_observation.display_location.full;
         document.getElementById('weather').innerHTML = cObj.current_observation.weather;
-        document.getElementById('temperature').innerHTML = cObj.current_observation.temp_c;
-
+        document.getElementById('temperature').innerHTML = cObj.current_observation.temp_c+"°C";
+        document.getElementById('temperature_feel').innerHTML = cObj.current_observation.feelslike_c+"°C";
     } //end if
 }; //end function
-
-
 
 
 
